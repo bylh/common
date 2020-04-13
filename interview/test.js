@@ -51,3 +51,25 @@ var n = 123;
 fun(n);
 console.log(n);
 console.log('end: 变量提升，函数预解析');
+
+/* ------------------------- 多次绑定bind会无效------------------------------- */
+console.log('start: bind')
+var bar = function(){
+  console.log(this.x);
+}
+var foo = {
+  x:3
+}
+var sed = {
+  x:4
+}
+var func = bar.bind(foo).bind(sed);
+func(); //?
+
+var fiv = {
+  x:5
+}
+var func = bar.bind(foo).bind(sed).bind(fiv);
+func(); //?
+
+console.log('end: bind');
