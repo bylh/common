@@ -19,6 +19,7 @@
  * @return {number}
  */
 // -1 -1 -2 -2
+// TODO 待优化内存，一段时间之后回顾的时候再做
 /* ----------------------------分治（zhi）算法 ------------------------------- */
 // 分治法：将一个问题拆分成多个相似的小问题，并对其分别求解，如果拆出的问题依然复杂，
 //就通过递归调用再次将子问题拆分，直到拆出的方法可以以简单方式求得解，最后合并多个小问题的解，就是原问题的结果
@@ -45,6 +46,7 @@ var maxSubArray = function(nums) {
         rightBorderSum += nums[i];
         maxRightBorderSum = Math.max(rightBorderSum, maxRightBorderSum);
     }
+    // 注意先后顺序，maxLeftBorderSum + maxRightBorderSum一定要在前面计算？
     return Math.max((maxLeftBorderSum + maxRightBorderSum), maxSubArray(nums.slice(0, center)), maxSubArray(nums.slice(center, len)));
 };
 
