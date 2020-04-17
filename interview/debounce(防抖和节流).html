@@ -1,0 +1,51 @@
+
+<!--参考： https://juejin.im/entry/5b1d2d54f265da6e2545bfa4-->
+<div style="height: 3000px">
+    <button onclick="debounceFunc()">测试debounce</button>
+</div>
+<script>
+
+    // 处理函数
+    function handle() {
+        console.log(Math.random());
+    }
+
+    // 注意此函数返回的是一个function, 生成一次就够了，其他地方调用
+    // 此处使用闭包，其实timeout设置个全局变量，能保存状态
+    function debounceGenerate(fn, wait) {
+        console.log('fn123', fn, wait);
+        var timeout = null;
+        return function () {
+            if (timeout !== null)
+                clearTimeout(timeout);
+            timeout = setTimeout(fn, wait);
+        }
+    }
+
+    let debounceFunc = debounceGenerate(handle, 1000);
+
+
+    function handle1() {
+        console.log(new Date());
+    }
+    function throttle(func, delay) {
+        var prev = Date.now();
+        return function() {
+            var context = this;
+            var args = arguments;
+            var now = Date.now();
+            if (now - prev >= delay) {
+                func.apply(context, args);
+                prev = Date.now();
+            }
+        }
+    }
+    let throttleFunc = throttle(handle1, 1000);
+
+    // 滚动事件
+    window.addEventListener('scroll', () => {
+        debounceFunc();
+        throttleFunc();
+    });
+
+</script>
