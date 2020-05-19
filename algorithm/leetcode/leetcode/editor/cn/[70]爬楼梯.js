@@ -39,22 +39,36 @@
 //     // return climbStairs(n - 1) + climbStairs(n-2);
 // };
 
-var climbStairs = function(n) {
-    cb = climb();
-    return cb(n);
-};
+// var climbStairs = function(n) {
+//     cb = climb();
+//     return cb(n);
+// };
+//
+// function climb(){
+//     let cache = {};
+//     return function cb(n){
+//         if (n in cache) {
+//             return cache[n]
+//         } else {
+//             if(n <= 2) {return n}
+//             cache[n] = cb(n-1)+cb(n-2)
+//             return cache[n]
+//         }
+//     }
+// }
+// f(n) = f(n - 1) + f(n - 2);
 
-function climb(){
-    let cache = {};
-    return function cb(n){
-        if (n in cache) {
-            return cache[n]
-        } else {
-            if(n <= 2) {return n}
-            cache[n] = cb(n-1)+cb(n-2)
-            return cache[n]
-        }
+function climbStairs(n) {
+    if (n === 1 || n === 2) {
+        return n;
     }
+    let sum1 = 1, sum2 = 2;
+    let sum = 0;
+    for (let i = 3; i <= n; i++) {
+        sum = sum1 + sum2;
+        sum1 = sum2;
+        sum2 = sum;
+    }
+    return sum;
 }
-
 //leetcode submit region end(Prohibit modification and deletion)
