@@ -13,4 +13,10 @@ func main() {
 	structure.TestDivideAndConquer()
 	// 链表
 	structure.TestLinkedList()
+	// 栈
+	structure.TestStack()
+
+	// 队列
+	structure.TestQueue()
+
 }

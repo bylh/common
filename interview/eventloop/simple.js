@@ -7,7 +7,7 @@ async function a2 () {
     console.log('a2')
 }
 
-console.log('script start')
+console.log('script start')         // 1
 
 setTimeout(() => {
     console.log('setTimeout')
@@ -23,7 +23,6 @@ let promise2 = new Promise((resolve) => {
     resolve('promise2.then')
     console.log('promise2')
 })
-
 promise2.then((res) => {
     console.log(res)
     Promise.resolve().then(() => {
