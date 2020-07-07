@@ -1,3 +1,4 @@
+
 let p = new Promise((resolve) => {
   resolve(10)
 })
@@ -9,7 +10,6 @@ setTimeout(() => {
 })
 
 setTimeout(() => {
-    console.log('hahh')
+    console.log('hahh:')
 })
-
 // 在node 8.9.4上面执行两个setTimeout的顺序是无法保证的

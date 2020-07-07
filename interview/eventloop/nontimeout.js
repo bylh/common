@@ -11,3 +11,8 @@ setTimeout(() => {
 setTimeout(() => {
 	console.log(0)
 }, 0)
+
+// const test = async() => {
+// 	console.log('test async');
+// };
+// test();
