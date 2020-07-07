@@ -14,7 +14,7 @@ import (
 func main() {
 	// Read entire file content, giving us little control but
 	// making it very simple. No need to close the file.
-	content, err := ioutil.ReadFile("nontimeout.js")
+	content, err := ioutil.ReadFile("setImmediate.js")
 	if err != nil {
 		fmt.Println("read file error")
 	}
@@ -23,7 +23,7 @@ func main() {
 	text := string(content)
 	// fmt.Println(text)
 	ch1 := make(chan string)
-	n := 10
+	n := 100
 
 	for i := 0; i < n; i++ {
 		// go runNodePipe(ch1, text)

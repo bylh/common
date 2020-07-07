@@ -1,12 +1,12 @@
 console.log('start')
-// process.nextTick(function foo() {
-//   console.log('nextTick')
-//   process.nextTick(foo)
-// })
-setImmediate(function foo() {
-  // console.log('setImmediate')
-  setImmediate(foo)
+process.nextTick(function foo() {
+  console.log('nextTick')
+  process.nextTick(foo)
 })
+// setImmediate(function foo() {
+//   // console.log('setImmediate')
+//   setImmediate(foo)
+// })
 
 setInterval(() => {
   console.log('end')
