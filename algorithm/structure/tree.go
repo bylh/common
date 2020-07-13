@@ -4,12 +4,13 @@ import (
 	"fmt"
 )
 
+// TreeNode 树节点的基本结构
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
-
+// TestTree 供main函数调用测试
 func TestTree() {
 	fmt.Println("/* ------------------------- 树 ------------------------------- */")
 	// 构造二叉树
@@ -17,7 +18,7 @@ func TestTree() {
 	//注意:[]中指定长度声明的方式是数组，否则是切片
 	//input := [...]int {1, 2, 3, 4, 5} // 数组
 	/*
-		 切片类型的值是可变长的。而切片的类型字面量中只有其元素的类型，而没有其长度。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减少。
+		切片类型的值是可变长的。而切片的类型字面量中只有其元素的类型，而没有其长度。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减少。
 		在每一个切片的底层数据结构中，会包含一个数组，可以被叫做底层数据，而切片就是对底层数组的引用，故而切片类型属于引用类型
 		切片理解底层数据类似一个窗户，窗户的宽度就类似与底层数据的长度，而切片就是窗口（该窗口只能往一个方向移动），可以通过该窗口看到一个数组，但不一定能看到该数组中所有的元素，有时候只能看待连续的一部分元素
 	*/
@@ -87,7 +88,7 @@ func buildCompleteTree(input []int) *TreeNode {
 	nodeMap := make(map[int]*TreeNode)
 	nodeMap[0] = &TreeNode{Val: input[0]}
 
-	for i, _ := range input {
+	for i := range input {
 		if i*2+1 < len(input) {
 			nodeMap[i*2+1] = &TreeNode{Val: input[i*2+1]}
 			nodeMap[i].Left = nodeMap[i*2+1]
