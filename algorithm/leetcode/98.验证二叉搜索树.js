@@ -60,19 +60,44 @@
  * @return {boolean}
  */
 
-var isValidBST = function (root) {
-    return vaildHelper(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
-}
-const vaildHelper = (root, min, max) => {
+// var isValidBST = function (root) {
+//     return vaildHelper(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+// }
+// const vaildHelper = (root, min, max) => {
+//     if (root == null) {
+//         return true
+//     }
+//     if (root.val <= min || root.val >= max) {
+//         return false
+//     }
+//     return (
+//         vaildHelper(root.left, min, root.val) &&
+//         vaildHelper(root.right, root.val, max)
+//     )
+// }
+var isValidBST = function(root) {
     if (root == null) {
         return true
     }
-    if (root.val <= min || root.val >= max) {
-        return false
+    let stack = []
+    // let result = []
+    let currentVal = Number.MIN_SAFE_INTEGER
+    // 非递归中序遍历
+    while(root != null || stack.length > 0) {
+        while (root != null) {
+            stack.push(root)
+            root = root.left
+        }
+        let node = stack.pop()
+        if (node) {
+            if (currentVal >= node.val) {
+                return false
+            }
+            currentVal = node.val;
+            // result.push(node.val)
+        }
+        root = node.right
     }
-    return (
-        vaildHelper(root.left, min, root.val) &&
-        vaildHelper(root.right, root.val, max)
-    )
+    return true
 }
 // @lc code=end
