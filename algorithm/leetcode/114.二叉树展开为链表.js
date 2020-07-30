@@ -55,23 +55,39 @@
  * @return {void} Do not return anything, modify root in-place instead.
  */
 
+// var flatten = function (root) {
+//     let current = root
+//     let stack = []
+//     let pre  = current
+//     while (current != null || stack.length > 0) {
+//         while (current != null) {
+//             if (current.right) {
+//                 stack.push(current.right)
+//             }
+//             current.right = current.left
+//             current.left = null
+//             pre = current
+//             current = current.right
+//         }
+//         let node = stack.pop()
+//         pre.right = node;
+//         current = node
+//     }
+// }
 var flatten = function (root) {
-    let current = root
-    let stack = []
-    let pre  = current
-    while (current != null || stack.length > 0) {
-        while (current != null) {
-            if (current.right) {
-                stack.push(current.right)
-            }
-            current.right = current.left
-            current.left = null
-            pre = current
-            current = current.right
-        }
-        let node = stack.pop()
-        pre.right = node;
-        current = node
+    if (root == null) {
+        return null
     }
+    console.log('val', root.val)
+    left = flatten(root.left)
+    right = flatten(root.right)
+    root.left = null
+    if (left) {
+        left.right = right
+        root.right = left
+    } else {
+        root.right = right
+    }
+    return root  
 }
 // @lc code=end
