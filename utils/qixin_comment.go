@@ -12,10 +12,11 @@ import (
 )
 
 type Role struct {
-	Name string
-	Code string
+	Name    string
+	Code    string
 	Comment string
 }
+
 func main() {
 	// Read entire file content, giving us little control but
 	// making it very simple. No need to close the file.
@@ -28,22 +29,26 @@ func main() {
 	//text := string(content)
 	// fmt.Println(text)
 	ch1 := make(chan string)
-	n := 5 // 每个角色刷多少条
+	n := 100 // 每个角色刷多少条
 	list := []Role{
 		{
-			Name: "吴金峰",
+			Name:    "吴金峰",
 			Code:    "94f2d8bc41ee81a7f03673836dfb7e79",
 			Comment: "1596252851379",
 		},
-		{
-			Name: "李岩",
-			Code:    "aad10254e0c7a71484aeb7af5108cbf9",
-			Comment: "1596271442656",
-		},
+		//{
+		//	Name: "李岩",
+		//	Code:    "aad10254e0c7a71484aeb7af5108cbf9",
+		//	Comment: "1596271442656",
+		//},
+		//{
+		//	Name: "韩明明",
+		//	Code: "519c9e0de125755fee2220fafeb6d399",
+		//	Comment: "1596337329123",
+		//},
 	}
 
-
-	textArray := []string{"加油", "冲冲冲", "优秀", "不多说，再来1000层", "666"}
+	textArray := []string{"加油", "冲冲冲", "优秀", "不多说，再来1000层", "666", "加油，冲冲冲"}
 
 	for ri := 0; ri < len(list); ri++ {
 		for i := 0; i < n; i++ {
@@ -61,6 +66,10 @@ func main() {
 }
 
 func postComment(ch chan string, text string, code string) {
+	// 随机sleep 0 - 5秒
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	time.Sleep(time.Duration(r.Intn(6)) * time.Second)
+
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
@@ -68,7 +77,7 @@ func postComment(ch chan string, text string, code string) {
 	timeout := 5 * time.Second //超时时间5s
 	client := &http.Client{
 		Transport: tr,
-		Timeout: timeout,
+		Timeout:   timeout,
 	}
 	commentUrl := "https://open.work.weixin.qq.com/wwopen/colleague/comment" // ?_=1596252851379可有可无， code是比较关键的
 	data := url.Values{}
@@ -92,7 +101,6 @@ func postComment(ch chan string, text string, code string) {
 	request.Header.Add("Origin", "https://open.work.weixin.qq.com")
 	request.Header.Add("Referer", "https://open.work.weixin.qq.com/wwopen/colleague/detail?code=94f2d8bc41ee81a7f03673836dfb7e79&version=3.0.26.2273&platform=mac")
 
-
 	request.Header.Add("Connection", "keep-alive")
 
 	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
@@ -110,4 +118,3 @@ func postComment(ch chan string, text string, code string) {
 	fmt.Println(string(c))
 	ch <- text
 }
-
