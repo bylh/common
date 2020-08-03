@@ -68,15 +68,17 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    let i = 0;
-    let current = head;
-    while(current) {
-        if (current.pos != null) {
+    if (head == null || head.next == null) {
+        return false
+    }
+    let slow = head
+    let fast = head.next // 为了能够进入while循环
+    while (slow !== fast) {
+        if (fast == null || fast.next == null) {
             return false
         }
-        current.pos = i;
-        i++;
-        current = current.next
+        slow = slow.next
+        fast = fast.next.next
     }
     return true
 };
