@@ -1,0 +1,22 @@
+<div id="subTree">
+    <form>
+        <input type="text" /> </form>
+    <p>Paragraph</p> <span>Span</span>
+</div>
+<script>
+    function traverseDOM(element, callback) {
+        callback(element);  // ⇽--- 用回调函数处理当前节点   
+        element = element.firstElementChild;
+        while (element) {
+            traverseDOM(element, callback);
+            element = element.nextElementSibling; //   ⇽--- 遍历每个子树
+        }
+
+    }
+    const subTree = document.getElementById("subTree");
+    traverseDOM(subTree, function (element) {
+        console.log('dom111', element);
+        console.assert(element !== null, element.nodeName);
+    });
+        //  ⇽--- 通过调用traverseDOM方法从根节点开始遍历
+</script>

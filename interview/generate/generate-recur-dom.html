@@ -1,0 +1,31 @@
+<div id="subTree">
+    <form>
+        <input type="text" /> </form>
+    <p>Paragraph</p> <span>Span</span>
+</div>
+<script>
+
+    function* DomTraversal(element) {
+        yield element
+        element = element.firstElementChild
+        while (element) {
+            // 注意yield*和yield的区别，函数前用*, 值面前用*
+            yield* DomTraversal(element);
+            element = element.nextElementSibling;
+        }
+    }
+    const subTree = document.getElementById("subTree");
+    // 注意generate函数的值可以直接使用for of 迭代器去遍历，当然也可以使用next，逐步取值
+    for (let element of DomTraversal(subTree)) {
+        console.log('element', element)
+        console.assert(element !== null, element.nodeName);
+    }
+    //  ⇽--- 使用for-of对节点进行循环迭代
+
+    // 使用next取值
+    // const cur = DomTraversal(subTree);
+    // console.log(cur.next);
+    // console.log(cur.next);
+
+
+</script>
