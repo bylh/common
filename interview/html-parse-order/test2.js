@@ -1,0 +1,1 @@
+console.log("after blocking script,you will appear");
