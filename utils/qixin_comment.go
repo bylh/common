@@ -29,11 +29,11 @@ func main() {
 	//text := string(content)
 	// fmt.Println(text)
 	ch1 := make(chan string)
-	n := 100 // 每个角色刷多少条
+	n := 200 // 每个角色刷多少条
 	list := []Role{
 		{
 			Name:    "吴金峰",
-			Code:    "94f2d8bc41ee81a7f03673836dfb7e79",
+			Code:    "824fb11c28b61dcf7f7d950f0c0d0a02",
 			Comment: "1596252851379",
 		},
 		//{
@@ -46,9 +46,24 @@ func main() {
 		//	Code: "519c9e0de125755fee2220fafeb6d399",
 		//	Comment: "1596337329123",
 		//},
+		{
+			Name:    "房姗",
+			Code:    "142f7c0e1bb718d45d13189a8df1319b",
+			Comment: "1596252851379",
+		},
+		{
+			Name:    "于莎莎",
+			Code:    "9601e99b16bffcf5684533580a5ce55e",
+			Comment: "1596252851379",
+		},
+		{
+			Name:    "藤妞妞",
+			Code:    "170c6d08f502f78caa177e177afcf9ea",
+			Comment: "1596252851379",
+		},
 	}
 
-	textArray := []string{"加油", "冲冲冲", "优秀", "不多说，再来1000层", "666", "加油，冲冲冲"}
+	textArray := []string{"加油", "冲冲冲", "优秀", "不多说，再来1000层", "加油，冲冲冲"}
 
 	for ri := 0; ri < len(list); ri++ {
 		for i := 0; i < n; i++ {
@@ -68,7 +83,7 @@ func main() {
 func postComment(ch chan string, text string, code string) {
 	// 随机sleep 0 - 5秒
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	time.Sleep(time.Duration(r.Intn(6)) * time.Second)
+	time.Sleep(time.Duration(r.Intn(60)) * time.Second)
 
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
