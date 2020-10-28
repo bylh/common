@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    <div class="test" style="text-decoration:underline;">
+        你好
+        <b style="text-decoration:underline;">粗体红色</b></b>
+        <b><s>
+            下划线、粗体、斜体
+        </s></b>
+    </div>
+
+
+
+    <div id="show-html"></div>
+</body>
+<script>
+    let innerHtml = document.getElementById('body').innerHTML;
+    document.getElementById('show-html').innerText = innerHtml;
+</script>
+</html>
