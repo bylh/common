@@ -7,15 +7,21 @@
 </head>
 
 <body id="body">
-    <span style="text-decoration: underline; font-weight: bold; font-style: italic;">
-        下划线、粗体、斜体
-        <span>测试</span>
-    </span>
-    <div id="show-html"></div>
+    1开始   <span style="text-decoration: underline; font-weight: bold; color: red">123<span style="font-style: italic;">456</span></span><span id="789">789</span><span id="test1" style="text-decoration: underline">000<span style="font-weight: bold; font-style: italic">888<div>测试div</div></span></span>
+
+    <table id="testtableid" class="testTableclass" style="float: right; color:aqua;"><tr><td style="width: 100px;">我是表格</td></tr></table>
+    2开始<b><u>123&nbsp;&nbsp;&nbsp;&nbsp;<i>456</i></u></b>789<u>000<i><b>888<div>测试divYYYYY</div></b></i></u>
+
+    3开始<u><b>123<i>456</i></b></u>789<u>000<b><i>888<div>测试div</div></i></b></u>
+
+    <img src="http://yx-kbs.ks3-cn-beijing.ksyun.com/knowques/575c20a8404a3cc7d5c42ee563dfbb0a" style="float:right;width:2.01in;height:100%">
+
+<!-- <img src="http://yx-kbs.ks3-cn-beijing.ksyun.com/knowques/575c20a8404a3cc7d5c42ee563dfbb0a" style="float:right;" width="2.01in" height="100%"> -->
+<img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1449142973,3696303178&fm=173&app=49&f=JPEG?w=312&h=208&s=2CB16894458E8D4D30BBAB910300F08E"> 
+    <div id="show-html" style="height: 500px;"></id>
 </body>
 <script>
     let innerHtml = document.getElementById('body').innerHTML;
     document.getElementById('show-html').innerText = innerHtml;
 </script>
-
 </html>

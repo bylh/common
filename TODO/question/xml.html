@@ -1,0 +1,157 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="body">
+    <table border="1" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td rowspan="1" width="28" colspan="1">
+                    <div id="bylh-rowspan-2-colspan-1"></div>222
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+        xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+        xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+        xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml"
+        xmlns:w10="urn:schemas-microsoft-com:office:word"
+        xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
+        xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"
+        xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+        <w:body>
+            <w:tbl>
+                <w:tblPr>
+                    <w:tblStyle w:val="Table" />
+                    <w:tblW w:type="pct" w:w="5000.0" />
+                    <w:tblLook w:firstRow="0" />
+                </w:tblPr>
+                <w:tblGrid>
+                    <w:gridCol w:w="7920" />
+                </w:tblGrid>
+                <w:tr>
+                    <w:tc>
+                        <w:bookmarkStart w:id="20" w:name="bylh-rowspan-2-colspan-1" />
+                        <w:bookmarkEnd w:id="20" />
+                        <w:p>
+                            <w:pPr>
+                                <w:pStyle w:val="Compact" />
+                                <w:jc w:val="left" />
+                            </w:pPr>
+                            <w:r>
+                                <w:t xml:space="preserve">222</w:t>
+                            </w:r>
+                        </w:p>
+                    </w:tc>
+                </w:tr>
+            </w:tbl>
+            <w:sectPr w:rsidR="00A5298C" w:rsidSect="00CD53E0">
+                <w:headerReference w:type="even" r:id="rId10" />
+                <w:headerReference w:type="default" r:id="rId9" />
+                <w:footerReference w:type="even" r:id="rId12" />
+                <w:footerReference w:type="default" r:id="rId11" />
+                <w:pgSz w:w="11907" w:h="16839" w:code="9" />
+                <w:pgMar w:top="902" w:right="1769" w:bottom="902" w:left="2223" w:header="499" w:footer="499"
+                    w:gutter="0" />
+                <w:cols w:sep="1" w:space="425" />
+                <w:docGrid w:type="lines" w:linePitch="312" />
+            </w:sectPr>
+        </w:body>
+    </w:document>
+</body>
+<script>
+    xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+        "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:pic=\"http://schemas.openxmlformats.org/drawingml/2006/picture\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><w:body><w:tbl><w:tblPr><w:tblStyle w:val=\"Table\" /><w:tblW w:type=\"pct\" w:w=\"5000.0\" /><w:tblLook w:firstRow=\"0\" /></w:tblPr><w:tblGrid><w:gridCol w:w=\"7920\" /></w:tblGrid><w:tr><w:tc><w:bookmarkStart w:id=\"20\" w:name=\"bylh-rowspan-2-colspan-1\" /><w:bookmarkEnd w:id=\"20\" /><w:p><w:pPr><w:pStyle w:val=\"Compact\" /><w:jc w:val=\"left\" /></w:pPr><w:r><w:t xml:space=\"preserve\">222</w:t></w:r></w:p></w:tc></w:tr></w:tbl><w:sectPr w:rsidR=\"00A5298C\" w:rsidSect=\"00CD53E0\"><w:headerReference w:type=\"even\" r:id=\"rId10\" /><w:headerReference w:type=\"default\" r:id=\"rId9\" /><w:footerReference w:type=\"even\" r:id=\"rId12\" /><w:footerReference w:type=\"default\" r:id=\"rId11\" /><w:pgSz w:w=\"11907\" w:h=\"16839\" w:code=\"9\" /><w:pgMar w:top=\"902\" w:right=\"1769\" w:bottom=\"902\" w:left=\"2223\" w:header=\"499\" w:footer=\"499\" w:gutter=\"0\" /><w:cols w:sep=\"1\" w:space=\"425\" /><w:docGrid w:type=\"lines\" w:linePitch=\"312\" /></w:sectPr></w:body></w:document>"
+    function handleXml(xml) {
+        const xmlDoc = (new DOMParser()).parseFromString(xml, 'application/xml');
+        /* ------------------------- 处理选项xml ------------------------------- */
+        xmlDoc.querySelectorAll('[*|name="bylh-option-container-2"]').forEach((item, index) => {
+            item.nextElementSibling.children[0].innerHTML += `
+                        <w:tabs>
+                            <w:tab w:val="left" w:pos="3600"/>
+                        </w:tabs>`
+            item.nextElementSibling.querySelectorAll('[*|name="bylh-option-2"]').forEach((option, index) => {
+                if (index % 2 !== 0) {
+                    option.nextElementSibling.innerHTML = '<w:tab/>' + option.nextElementSibling.innerHTML;
+                }
+            })
+        });
+        xmlDoc.querySelectorAll('[*|name="bylh-option-container-4"]').forEach((item) => {
+            item.nextElementSibling.children[0].innerHTML += `
+                    <w:tabs>
+                        <w:tab w:val="left" w:pos="1800"/>
+                        <w:tab w:val="left" w:pos="3600"/>
+                        <w:tab w:val="left" w:pos="5400"/>
+                    </w:tabs>`
+            item.nextElementSibling.querySelectorAll('[*|name="bylh-option-4"]').forEach((option, index) => {
+                if (index % 4 !== 0) {
+                    option.nextElementSibling.innerHTML = '<w:tab/>' + option.nextElementSibling.innerHTML;
+                }
+            })
+        });
+
+        /* ------------------------- 处理table(合并单元格) ------------------------------- */
+        [...xmlDoc.getElementsByTagName('w:tbl')].forEach((table) => {
+            console.log(111);
+            let rows = [...table.children].filter(item => item.nodeName === 'w:tr');
+            rows.forEach((row, i) => {
+                console.log(222);
+                [...row.children].forEach((cell, j) => {
+                    if (cell && cell.children && cell.children[0]) {
+                        let wName = cell.children[0].getAttribute('w:name') || '';
+                        let prefix = 'bylh-rowspan-';
+                        if (wName.startsWith(prefix)) {
+                            let nums = wName.match(/\d+/g);
+                            let rowSpan = Number(nums[0]);
+                            let colSpan = Number(nums[1]);
+                            let tplXml = '<w:tcPr><w:tcW w:w="0" w:type="auto"/>' +
+                                (colSpan > 1 ? `<w:gridSpan w:val="${colSpan}"/>` : '') +
+                                (rowSpan > 1 ? '<w:vMerge w:val="restart"/>' : '') + '</w:tcPr>';
+                            let tplElement = document.createElement('w:tcPr');
+                            cell.firstChild.before(tplElement);
+                            tplElement.outerHTML = tplXml;
+                            if (colSpan > 1) {
+                                for (let m = 1; m < colSpan; m++) {
+                                    // cell.parentNode.removeChild(cell.parentNode.children[j + 1]);
+                                    cell.parentNode.removeChild(cell.nextElementSibling);
+                                }
+                            }
+
+                            if (rowSpan > 1) {
+                                for (let n = i + 1; n < rowSpan + i; n++) {
+                                    let tplXml = '<w:tcPr><w:tcW w:w="0" w:type="auto"/>' +
+                                        (colSpan > 1 ? `<w:gridSpan w:val="${colSpan}"/>` : '') +
+                                        (rowSpan > 1 ? '<w:vMerge/>' : '') + '</w:tcPr>';
+                                    let tplElement = document.createElement('w:tcPr');
+                                    console.log(333, rows[n], n, i);
+                                    rows[n].children[j].firstChild.before(tplElement);
+                                    console.log(333, 'end');
+
+                                    tplElement.outerHTML = tplXml;
+                                    if (colSpan > 1) {
+                                        for (let m = 1; m < colSpan; m++) {
+                                            console.log(444);
+                                            rows[n].removeChild(rows[n].children[j + 1]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                })
+            })
+        })
+        return xmlDoc.children[0].outerHTML;
+    }
+    handleXml(xml)
+</script>
+
+</html>

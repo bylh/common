@@ -1,51 +1,21 @@
 (async () => {
-    // const fs = require('fs-extra')
-    // let file = await fs.readFile('question.html', 'utf8')
-    // // console.log(file)
+    const fs = require('fs-extra')
+    const axios = require('axios')
+    let file = await fs.readFile('question.html', 'utf8')
+    // console.log(file)
     const { _htmlParser } = require('./filterQuestion')
-    // const filterHtml = _htmlParser(file)
-    // // console.log(filterHtml)
-    // await fs.writeFile('question-filter.html', filterHtml)
+    const { _htmlFilter } = require('./filter-cheerio')
+    const filterHtml = _htmlFilter(file)
+    // console.log(filterHtml)
+    await fs.writeFile('question-filter.html', filterHtml)
 
-    let testStr = `<span style="text-decoration: underline;">123<span style="font-style: italic;">456</span></span><span id="独立">789</span>`
-    // console.log(_htmlParser(testStr))
-    // testStr.replace(/<\/?span[^>]*>/gi, (str, index) => {
-    //     console.log(str, index);
-    //     return str;
-    // })
-    console.log(testStr.match(/<\/?span[^>]*>/gi))
-    const cheerio = require('cheerio');
-    const $ = cheerio.load(`开始<span style="text-decoration: underline; font-weight: bold; color: red">123<span style="font-style: italic;">456</span></span><span id="独立">789</span>`, { decodeEntities: false });
-    // $('h2.title').text('Hello there!');
-    // $('h2').addClass('welcome');
-    // console.log($.html());
-    $('span').
-    // filter((index, span) => {
-    //     let spanDom = $(span);
-    //     return spanDom.css('text-decoration') === 'underline'
-    //     // console.log($(span).attr())
-    //     // $(span).replaceWith('<p>' + $(span).html() + '</p>')
-    // }).
-    each((index, span) => {
-        // console.log($(span).css())
-        let spanDom = $(span);
-        console.log(index, spanDom.html());
-        let sTag = '';
-        let eTag = ''
-        if (spanDom.css('text-decoration') === 'underline') {
-            sTag += '<u>';
-            eTag += '</u>';
-        }
-        if (spanDom.css('font-weight') === 'bold') {
-            sTag += '<b>'
-            eTag += '</b>'
-        }
-        if (spanDom.css('font-style') === 'italic') {
-            sTag += '<i>'
-            eTag += '</i>'
-        }
-        spanDom.replaceWith(sTag + spanDom.html() + eTag)
+    // let testStr = `开始<span style="text-decoration: underline; font-weight: bold; color: red">123&nbsp&nbsp<span style="font-style: italic;">456</span></span><span id="789">789</span><span id="test1" style="text-decoration: underline">000<span style="font-weight: bold; font-style: italic">888<div>测试div</div></span></span>`
+    let testStr = `123`;
+    console.log(_htmlFilter(testStr));
+
+    const imgData = await axios({
+        url: encodeURI 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1449142973,3696303178&fm=173&app=49&f=JPEG?w=312&h=208&s=2CB16894458E8D4D30BBAB910300F08E',
+        responseType: 'stream'
     })
-    // 移除所有css替换 https://segmentfault.com/q/1010000000119126
-    console.log($('body').html())
+    console.log('imgData', imgData.data);
 })()

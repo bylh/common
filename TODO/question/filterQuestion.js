@@ -85,34 +85,55 @@ function _styleToTag(style) {
     };
 }
 
-// 过滤
 function _htmlParser(html) {
-    let tagList = [];
-    // 优先处理span标签中的特定样式转特定标签
-    html = html.replace(/<\/?span[^>]*>/gi, function (str, $1) {
-        if (str === '</span>') {
-            tagList.forEach(tag => {
-                str = `${str}</${tag}>`;
-            });
-            tagList = [];
-        } else {
-            str = str.replace(/style\s*=\s*('[^']*'|"[^"]*")/ig, function (current, style) {
-                if (style) {
-                    let { tagArray, callStr } = _styleToTag(style);
-                    tagList = [...tagArray];
-                    if (callStr) {
-                        return `style="${callStr}"`;
+    // 匹配所有span标签 注意：match与replace方法的正则匹配需要保持一致，因为是以index匹配替换的,必须对应
+    let spans = html.match(/<\/?span[^>]*>/gi) || [];
+
+    if (Array.isArray(spans) && spans.length > 0) {
+        spans = spans.map((tag, index) => ({
+            content: tag,
+            type: tag === '</span>' ? 'eTag' : 'sTag',
+            matched: false,
+            index
+        }));
+        spans.forEach((item, index) => {
+            if (item.type === 'eTag' && !item.matched) { // 是结束标签并且没有配对过，找最近的开始标签
+                for (let i = index - 1; i >= 0; i--) {
+                    if (spans[i].type === 'sTag' && !spans[i].matched) {
+                        let result = {};
+                        // 可转换为标签形式的style属性转换为标签形式
+                        spans[i].content = spans[i].content.replace(/style\s*=\s*('[^']*'|"[^"]*")/ig, (current, style) => {
+                            result = _styleToTag(style);
+                            if (result.callStr) {
+                                return `style="${result.callStr}"`;
+                            }
+                            return style;
+                        });
+                        if (result.tagArray && result.tagArray.length > 0) {
+                            // 将u标签等追加到开始标签的前面（比如<span><u>）
+                            spans[i].content += result.tagArray.map(tag => `<${tag}>`).join('');
+                            // 将u标签等追加到结束标签的后面（比如</u></span>）
+                            item.content = result.tagArray.map(tag => `</${tag}>`).reverse().join('') + item.content;
+                        }
+                        spans[i].matched = true;
+                        break; // 匹配到到最近的一个开始标签就终止
                     }
                 }
-                return '';
-            });
-            tagList.forEach(tag => {
-                str = `<${tag}>${str}`;
-            });
+                item.matched = true;
+            }
+        });
 
-        }
-        return str;
-    });
+        // 处理span标签中的特定样式转特定标签
+        let i = 0;
+        html = html.replace(/<\/?span[^>]*>/gi, function (str, $1) {
+            let span = spans[i];
+            if (!span) {
+                return str;
+            }
+            i++;
+            return span.content;
+        });
+    }
     // 去除所有span标签
     html = html.replace(/<\/?span.*?>/gi, '');
     // 处理所有标签的style样式
