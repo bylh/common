@@ -49,24 +49,49 @@
  * @param {number} target
  * @return {number}
  */
+// var searchInsert = function(nums, target) {
+//     if (!Array.isArray(nums) || nums.length === 0) {
+//         return 0;
+//     }
+//     if (target <= nums[0]) {
+//         return 0;
+//     }
+//     if (target > nums[nums.length - 1]) {
+//         return nums.length
+//     }
+//     for (let i = 0; i < nums.length; i++) {
+//         if (target === nums[i]) {
+//             return i
+//         } 
+//         if (target > nums[i] && target < nums[i + 1]) {
+//             return i + 1
+//         }
+//     }
+// };
+// 正常方法
+// var searchInsert = function(nums, target) {
+//     for (let i = 0; i < nums.length; i++) {
+//         if (nums[i] >= target) {
+//             return i;
+//         }
+//     }
+//     return nums.length
+// };
+
+// 二分
 var searchInsert = function(nums, target) {
-    if (!Array.isArray(nums) || nums.length === 0) {
-        return 0;
-    }
-    if (target <= nums[0]) {
-        return 0;
-    }
-    if (target > nums[nums.length - 1]) {
-        return nums.length
-    }
-    for (let i = 0; i < nums.length; i++) {
-        if (target === nums[i]) {
-            return i
-        } 
-        if (target > nums[i] && target < nums[i + 1]) {
-            return i + 1
+    const n = nums.length
+    let left = 0, right = n, ans = n
+    while (left <= right) {
+        let mid = ((right - left) >> 1) + left
+        if (target <= nums[mid]) {
+            ans = mid
+            right = mid - 1
+        } else {
+            left = mid + 1
         }
     }
+    return ans;
 };
 // @lc code=end
 
