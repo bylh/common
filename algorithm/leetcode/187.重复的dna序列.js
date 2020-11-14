@@ -53,7 +53,7 @@
 var findRepeatedDnaSequences = function(s) {
     let i = 0
     let map = new Map()
-    while(i < s.length) {
+    while(i + 10 <= s.length) {
         let str = s.substr(i, 10)
         let count = map.get(str) || 0
         map.set(str, count + 1)
