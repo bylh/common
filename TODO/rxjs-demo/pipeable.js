@@ -9,8 +9,9 @@
         map(x => x + x),
         scan((acc, x) => acc + x, 0)
     )
+    console.log('测试同步：start');
     // 可重复订阅
     sub.subscribe(x => console.log(x))
     sub.subscribe(x => console.log(x))
-
+    console.log('测试同步：end');
 })()
