@@ -68,14 +68,13 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var maxDepth = function(root) {
+var maxDepth = function(root) {  // 计算二叉树深度
     if (!root) {
         return 0;
     }
-    // 注意这个1在递归中是累加的
     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
 };
-var isBalanced = function(root) {
+var isBalanced = function(root) { // 根据左右二叉树深度递归判断是否是平衡二叉树
     if (root == null) {
         return true
     }
