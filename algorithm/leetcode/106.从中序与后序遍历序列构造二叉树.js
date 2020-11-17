@@ -48,12 +48,13 @@
  * @return {TreeNode}
  */
 var buildTree = function(inorder, postorder) {
-    var val = postorder.pop(), index = inorder.indexOf(val)
-    return val === undefined ? null : {
-        val,
-        left: buildTree(inorder.slice(0, index), postorder.slice(0, index)),
-        right: buildTree(inorder.slice(index + 1), postorder.slice(index))
-    }
+    if (!postorder.length) return null;
+    const top = postorder.pop();
+    const root = new TreeNode(top);
+    const topIndex = inorder.indexOf(top);
+    root.left = buildTree(inorder.slice(0, topIndex), postorder.slice(0, topIndex));
+    root.right = buildTree(inorder.slice(topIndex + 1), postorder.slice(topIndex));
+    return root;
 };
 // @lc code=end
 
