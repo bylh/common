@@ -57,14 +57,26 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-const check = (p, q) => {
-    if (!p && !q) return true
-    if (!p || !q) return false
-    return p.val === q.val && check(p.left, q.right) && check(p.right, q.left)
-}
-var isSymmetric = function (root) {
-    return check(root, root)
-};
+// 递归实现
+// const check = (p, q) => {
+//     if (!p && !q) return true
+//     if (!p || !q) return false
+//     return p.val === q.val && check(p.left, q.right) && check(p.right, q.left)
+// }
+// var isSymmetric = function (root) {
+//     return check(root, root)
+// };
 
+// 迭代实现
+var isSymmetric = function (root) {
+    var q = [root, root], n, m
+    while (q.length) {
+        n = q.shift(), m = q.shift()
+        if (!m && !n) continue
+        if (!m || !n || m.val !== n.val) return false
+        q.push(n.left, m.right, n.right, m.left)
+    }
+    return true
+};
 // @lc code=end
 
