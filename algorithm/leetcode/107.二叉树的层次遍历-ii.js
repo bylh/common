@@ -65,9 +65,9 @@ var levelOrderBottom = function (root) {
             node.right && temp.push(node.right)
         }
         levelArr = temp
-        recordArr.push(arr)
+        recordArr.unshift(arr)
     }
-    return recordArr.reverse()
+    return recordArr
 };
 // @lc code=end
 
