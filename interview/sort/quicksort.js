@@ -20,31 +20,34 @@ function swap(arr, i, j) {
     arr[i] = arr[j]
     arr[j] = temp
 }
-/**
- * 
- * @param {*} arr  数组
- * @param {*} start 起始下标
- * @param {*} end  结束下标 + 1
- */
-function divide(arr, start, end) {
-    // 基准点
-    const pivot = arr[end - 1]
-    let i = start - 1
-    for (let j = start; j < end - 1; j++) {
-        // 如果比基准点小就i++, 然后交换元素位置
-        if (arr[j] <= pivot) {
-            i++
-            swap(arr, i, j)
+// 快速排序
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left < right) {
+        let partitionIndex = partition(arr, left, right);
+        quickSort(arr, left, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, right);
+    }
+    return arr;
+};
+
+function partition(arr, left, right) {
+    //分区操作
+    let pivot = left, //设定基准值（pivot）
+        index = pivot + 1;
+    for (let i = index; i <= right; i++) {
+        if (arr[i] < arr[pivot]) {
+            swap(arr, i, index);
+            index++;
         }
     }
-    // 最后将基准点插入到i+1的位置
-    swap(arr, i + 1, end - 1)
-    return i + 1
-}
-function quickSort(arr, start = 0, end = arr.length) {
-    if (start < end - 1) {
-        const pivotIndex = divide(arr, start, end)
-        quickSort(arr, start, pivotIndex)
-        quickSort(arr, pivotIndex + 1, end)
-    }
-}
+    swap(arr, pivot, index - 1);
+    return index - 1;
+};
+
+function swap(arr, i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+};
+const arr = [5, 3, 8, 4, 2]
+console.log(quickSort(arr))
