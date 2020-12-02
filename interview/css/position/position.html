@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- position属性
+    position属性的重要性应该没啥可说的了。想必谁都回答的上来。
+
+    absolute 绝对定位，相对于 static 定位以外的第一个父元素进行定位。
+    relative 相对定位，相对于其自身正常位置进行定位。
+    fixed 固定定位，相对于浏览器窗口进行定位。
+    static 默认值。没有定位，元素出现在正常的流中。
+    inherit 规定应该从父元素继承 position 属性的值。
+
+    但是要注意一个问题，absolute 是相对于父元素的哪个属性进行定位的？通过下面的例子我们来看一看。 -->
+    <style>
+        .container {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin: 20px;
+            border: 10px solid red;
+            padding: 10px;
+            background: blue;
+        }
+
+        .inner {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: 0;
+            left: 0;
+            background: pink;
+        }
+    </style>
+    <!-- 从上图可以看出，是相对于 static 定位以外的第一个父元素的 padding 来定位的。
+    CSS3中新增了一个 position:sticky 属性，该属性的作用类似 position:relative 和 position:fixed的结合。元素在跨越特定阈值前为相对定位，之后为固定定位。必须指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。但 sticky 尚在实验性阶段。 -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner">
+        </div>
+    </div>
+</body>
+
+</html>

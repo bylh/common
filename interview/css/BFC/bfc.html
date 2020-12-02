@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 参考: https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flow_Layout/Intro_to_formatting_contexts#Block_formatting_contexts_%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87 -->
+    <style>
+        .box {
+            background-color: rgb(224, 206, 247);
+            border: 5px solid rebeccapurple;
+            /* display: flow-root可以直接把box变为BFC */
+            /* display: flow-root */
+
+            /* flot: left也可以直接把box变为BFC */
+            /* float: left; */
+
+            /* display: flex也可以直接把box变为BFC */
+            /* display: flex; */
+            width: 500px;
+        }
+
+        .float {
+            float: left;
+            width: 200px;
+            height: 150px;
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="float">I am a floated box!</div>
+        <p>I am content inside the container.</p>
+    </div>
+</body>
+
+</html>
