@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    window.jsonpCallback = function (res) {
+        console.log('res', res)
+    }
+</script>
+<!-- src="http://localhost:8888/jsonp?cb=jsonpCallback"请求的结果就是
+     jsonpCallback ({
+"code": 0,
+"message": "jsonp success"
+})  -->
+<!-- 相当于
+<script>
+    jsonpCallback(
+        {
+            "code": 0,
+            "message": "jsonp success"
+        }
+    )
+</script> -->
+<!-- 直接执行了 -->
+<!-- 而当前定义的是
+window.jsonpCallback = function (res) {
+    console.log('res', res)
+} 
+
+-->
+
+<!-- 只能处理get请求 -->
+<script src="http://localhost:8888/jsonp?cb=jsonpCallback"></script>
+
+</html>
