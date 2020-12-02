@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            height: 200px;
+            background-color: yellow;
+            margin-bottom: 20px;
+        }
+
+        .inner {
+            height: 100px;
+            width: 100px;
+            background-color: greenyellow;
+        }
+
+        .display-outer {
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .transform-outer {
+            position: relative;
+        }
+
+        .transform-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .position-outer {
+            position: relative;
+        }
+
+        .position-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+
+        .margin-outer {
+            position: relative;
+        }
+
+        .margin-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="display-outer outer">
+        <div class="display-inner inner">
+            flex居中
+        </div>
+    </div>
+    <div class="transform-outer outer">
+        <div class="transform-inner inner">
+            transform居中
+        </div>
+    </div>
+    <div class="position-outer outer">
+        <div class="position-inner inner">
+            position居中（inner宽高已知）
+        </div>
+    </div>
+    <div class="margin-outer outer">
+        <div class="margin-inner inner">
+            margin居中（inner宽高已知）
+        </div>
+    </div>
+</body>
+
+</html>

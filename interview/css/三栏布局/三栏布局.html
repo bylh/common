@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .flex-container {
+            display: flex;
+            background-color: yellow;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .flex-container .left {
+            flex-basis: 200px;
+            background: green;
+        }
+
+        .flex-container .main {
+            background: yellowgreen;
+            flex: 1;
+        }
+
+        .flex-container .right {
+            flex-basis: 200px;
+            background: green;
+        }
+
+
+        .position-container {
+            position: relative;
+            background-color: yellow;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .position-container .left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            background: green;
+        }
+
+        .position-container .main {
+            background: yellowgreen;
+            margin: 0 200px;
+        }
+
+        .position-container .right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            background: green;
+        }
+
+
+        .float-container {
+            background-color: yellow;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .float-container .left {
+            float: left;
+            width: 200px;
+            background: green;
+        }
+
+        .float-container .main {
+            background: yellowgreen;
+            margin: 0 200px;
+        }
+
+        .float-container .right {
+            float: right;
+            width: 200px;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="left">left</div>
+        <div class="main">main</div>
+        <div class="right">right</div>
+    </div>
+    <div class="position-container">
+        <div class="left">left</div>
+        <div class="main">main</div>
+        <div class="right">right</div>
+    </div>
+
+    <div class="float-container">
+        <!-- 思考：：：为什么main不能放中间，放中间就会出问题 -->
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="main">main</div>
+    </div>
+</body>
+
+</html>
