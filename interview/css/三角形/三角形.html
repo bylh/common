@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .triangle {
+            height: 0;
+            width: 0;
+            /* 上右下左 */
+            border-color: red transparent transparent pink;
+            border-style: solid;
+            border-width: 50px;
+
+            position: relative;
+        }
+        .text {
+            position: absolute;
+            /* 75 * (1 + 0.45) = 108.75 */
+            transform: translate(-75%, -108.75%) rotate(-45deg);
+            top: 0;
+            left: 0;
+            width: max-content;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="triangle">
+        <div class="text">三角形</div>
+    </div>
+</body>
+
+</html>
