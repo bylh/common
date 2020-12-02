@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 参考： https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function () {
+        context.drawImage(this, 0, 0);
+        context.getImageData(0, 0, this.width, this.height);
+    };
+    // 当然服务器也得放开限制，比如阿里云oss的这个地址就不行, 下面github的就可以
+    // https://by-lh.oss-cn-beijing.aliyuncs.com/images/sort.png?Expires=1606905942&OSSAccessKeyId=TMP.3KeaKAfQZ6P1w2SQhe321fnKS8eipn2tLovcFp7PyXbHXpszXD2JZQNq5dMPvwHpqbKGWw1CUN6nhGQCFbuSeCUo9Fz6w2&Signature=bZLApTIEyNrm3sZtvMfEUw9U9DU%3D
+    img.src = 'https://avatars3.githubusercontent.com/u/496048?s=120&v=4'
+</script>
+
+</html>
