@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .float {
+            width: 300px;
+            height: 300px;
+            float: left;
+            background: green;
+            opacity: .5;
+        }
+
+        p {
+            background: red;
+        }
+
+        /* 方式一，在需要清除浮动的container后面追加个div，并设置clear: both */
+        /* .clear {
+            clear: both;
+        } */
+        /* 方式二：设置伪类 */
+        .container::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        /* 方式三：将container变为BFC */
+        /* .container {
+            overflow: hidden;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class='float'></div>
+    </div>
+    <div class='clear'></div>
+    <p>some text</p>
+</body>
+
+</html>
