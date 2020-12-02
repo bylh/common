@@ -16,6 +16,7 @@
 
             position: relative;
         }
+
         .text {
             position: absolute;
             /* 75 * (1 + 0.45) = 108.75 */
@@ -24,12 +25,26 @@
             left: 0;
             width: max-content;
         }
+
+
+        .clip-path-triangle {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 将坐标(0,0),(0,30),(30,0)连成一个三角形 */
+            clip-path: polygon(0px 0px, 0px 100px, 100px 0px);
+            /* 旋转225，变成下三角 */
+            transform: rotate(225deg); 
+        }
     </style>
 </head>
 
 <body>
     <div class="triangle">
         <div class="text">三角形</div>
+    </div>
+    <div class="clip-path-triangle">
+
     </div>
 </body>
 
