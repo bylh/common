@@ -37,6 +37,7 @@
     function throttle(fn, wait) {
         let timer = null;
         return function (...args) {
+            console.log('args', args);
             if (!timer) {
                 timer = setTimeout(() => {
                     timer = null;

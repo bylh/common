@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <strong>
+            测试防抖：：：
+        </strong>
+        <button onclick="count()">计数</button>
+        <button onclick="debounceCount()">防抖计数</button>
+        <button onclick="debounceExcludeFistCount()">防抖计数(首次立即执行)</button>
+
+    </div>
+</body>
+<script>
+    // duration时间段内多次点击只会响应一次
+    function debounce(fn, duration = 500) {
+        let timeoutId = null // 保存定时器的ID
+        return function () {
+            clearTimeout(timeoutId) // 清除当前定时器，重新计时
+            timeoutId = setTimeout(() => {
+                /* 为什么要 fn.apply(this, arguments);而不是这样 fn()
+                   为了确保上下文环境为当前的this，所以不能直接用fn
+                 */
+                fn.apply(this, arguments)
+            }, duration)
+        }
+    }
+
+    // 首次不用等待duation的 debounce
+    function debounceExcludeFist(fn, duration = 500) {
+        let timeoutId = null // 保存定时器的ID
+        return function () {
+            if (timeoutId == null) {
+                fn.apply(this, arguments)
+            }
+            clearTimeout(timeoutId) // 清除当前定时器，重新计时
+            timeoutId = setTimeout(() => {
+                timeoutId = null
+            }, duration)
+        }
+    }
+
+    let i = 0
+    function count() {
+        i++
+        console.log('点击次数合计：', i)
+    }
+    const debounceCount = debounce(count)
+    const debounceExcludeFistCount = debounceExcludeFist(count, 2000)
+</script>
+
+</html>
