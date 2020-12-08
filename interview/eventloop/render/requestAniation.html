@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 参考https://zhuanlan.zhihu.com/p/142742003
+
+    // 在控制台不断执行这段代码，可以发现有时候会从red->blue闪烁一下，有时候直接就是blue,不闪烁
+    // setTimeout(() => {
+    //     document.body.style.background = "red"
+    //     setTimeout(() => {
+    //         document.body.style.background = "blue"
+    //     })
+    // })
+    // // 一版屏幕的刷新率是60fps,及一秒刷新60次，那么大约间隔17毫秒就会刷新一次，那么大概率是闪烁的，第一次赋值结束会遇到一次刷新，第二次也会
+    // setTimeout(() => {
+    //     document.body.style.background = "red"
+    //     setTimeout(() => {
+    //         document.body.style.background = "blue"
+    //     }, 17)
+    // }, 17)
+
+    let i = 10
+    let req = () => {
+        i--
+        requestAnimationFrame(() => {
+            document.body.style.background = "red"
+            requestAnimationFrame(() => {
+                document.body.style.background = "blue"
+                if (i > 0) {
+                    req()
+                }
+            })
+        })
+    }
+
+    req()
+</script>
+
+</html>
