@@ -1,3 +1,8 @@
+/**
+ * 插入排序
+ * 
+ * @param {Array<Number>} arr 
+ */
 function insertSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let temp = arr[i] // 记录当前位置的数

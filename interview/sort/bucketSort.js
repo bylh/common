@@ -1,5 +1,5 @@
 /**
- * 
+ * 桶排序
  * @param {*} arr 
  * @param {*} bucketSize 默认为5
  */

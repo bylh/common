@@ -4,6 +4,10 @@ function swap(arr, i, j) {
     arr[i] = arr[j]
     arr[j] = temp
 }
+/**
+ * 冒泡排序
+ * @param {Array} arr 
+ */
 function bubbleSort(arr) {
     const len = arr.length
     if (len <= 1) {
