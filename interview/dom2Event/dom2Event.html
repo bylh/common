@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outer {
+            height: 200px;
+            width: 200px;
+            background-color: yellow;
+        }
+
+        #outer #middle {
+            height: 100px;
+            width: 100px;
+            background-color: greenyellow;
+            margin: auto;
+        }
+
+        #outer #middle #inner {
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="Click Me" id="btn">
+    <div id="outer">
+        <div id="middle">
+            <a id="inner" href="https://www.baidu.com">我是链接</a>
+            <div id="inner-text">我是普通的</div>
+        </div>
+
+    </div>
+
+    <ul id="parent-list">
+        <li id="post-1">Item 1</li>
+        <li id="post-2">Item 2</li>
+        <li id="post-3">Item 3</li>
+        <li id="post-4">Item 4</li>
+        <li id="post-5">Item 5</li>
+        <li id="post-6">Item 6</li>
+    </ul>
+</body>
+<script>
+    // DOM0 级事件处理程序
+    var btn = document.getElementById("btn");
+    btn.onclick = function () {
+        console.log(this.id); // 输出 btn
+    }
+
+
+    // DOM2 级事件处理程序
+    let outer = document.querySelector('#outer')
+    outer.addEventListener('click', (e) => {
+        console.log('outer', e)
+    })
+    let middle = document.querySelector('#middle')
+    middle.addEventListener('click', (e) => {
+        // 在现代浏览器中，默认情况下（addEventListener第三个参数默认为false,使用冒泡事件）
+        // ，所有事件处理程序都在冒泡阶段进行注册，点击middle只会打印middle
+        e.stopPropagation()
+
+        console.log('middle', e)
+    }, false)
+    let inner = document.querySelector('#inner')
+    inner.addEventListener('click', (e) => {
+        // 阻止默认事件，如a标签的点击事件、表单的自动提交事件
+        // 特别注意：：： 如果此元素的父元素有使用捕获类型即addEventListener设置为true且阻止了事件传播，则此元素的click监听不会触发，
+        // 即使使用了e.preventDefault()仍然不能阻止默认事件，因为此时默认事件会执行，而监听事件不能执行，所以e.preventDefault()没执行
+        e.preventDefault()
+        console.log('inner', e)
+    })
+    let innerText = document.querySelector('#inner-text')
+    innerText.addEventListener('click', (e) => {
+        console.log('innerText', e)
+    })
+
+    // 事件委托
+    /*
+    冒泡还允许我们利用事件委托——这个概念依赖于这样一个事实,如果你想要在大量子元素中单击任何一个都可以运行一段代码，您可以将事件监听器设置在其父节点上，并让子节点上发生的事件冒泡到父节点上，而不是每个子节点单独设置事件监听器。
+    一个很好的例子是一系列列表项，如果你想让每个列表项被点击时弹出一条信息，您可以将click单击事件监听器设置在父元素<ul>上，这样事件就会从列表项冒泡到其父元素<ul>上。
+    */
+    // Get the element, add a click listener...
+    document.getElementById("parent-list").addEventListener("click", (e) => {
+        // e.target is the clicked element!
+        // If it was a list item
+        if (e.target && e.target.nodeName == "LI") {
+            // List item found!  Output the ID!
+            console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
+        }
+    });
+</script>
+
+</html>
