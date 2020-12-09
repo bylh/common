@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input id="input" />
+    </div>
+    <script>
+        // 最简单的双向绑定实现
+        const inputEle = document.querySelector('#input')
+
+        const inputObj = {
+            text: '你好啊'
+        }
+        inputEle.value = inputObj.text
+        const proxyInput = new Proxy(inputObj, {
+            get(target, key, receiver) {
+                console.log('get', key)
+                return Reflect.get(target, key, receiver)
+            },
+            set(target, key, value, receiver) {
+                console.log('set', key)
+                inputEle.value = value
+                return Reflect.set(target, key, value, receiver)
+            }
+        })
+
+        inputEle.addEventListener('input', (e) => {
+            console.log(e.target.value)
+            proxyInput.text = e.target.value
+        })
+
+    </script>
+</body>
+
+</html>
