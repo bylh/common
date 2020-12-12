@@ -36,7 +36,8 @@ function deepClone(obj, hash = new WeakMap()) {
             cloneObj = new Constructor()
             hash.set(obj, cloneObj)
     }
-    [...Object.getOwnPropertyNames(obj), ...Object.getOwnPropertySymbols(obj)].forEach(k => {
+    // 等价于 [...Object.getOwnPropertyNames(obj), ...Object.getOwnPropertySymbols(obj)]
+    Reflect.ownKeys(obj).forEach(k => {
         cloneObj[k] = deepClone(obj[k], hash)
     })
     return cloneObj
