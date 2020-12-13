@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="print.css" rel="stylesheet" media="print">
+    <link href="other.css" rel="stylesheet" media="(min-width: 40em)">
+    <link href="style.css" rel="stylesheet">
+</head>
+<!-- 关键路径渲染
+    阻塞渲染
+    不符合媒体查询的不在关键路径，不会阻塞渲染，下载优先级会降低
+ -->
+<body>
+    <div class="print-class">
+        print style
+    </div>
+    <div class="style-class">
+        normal style
+    </div>
+    <div class="other-class">
+        media style
+    </div>
+</body>
+
+</html>
