@@ -11,3 +11,11 @@
 ---
 
 + 基于函数组合的 API 更好的重用逻辑代码（在vue2 Options API中通过Mixins重用逻辑代码，容易发生命名冲突且关系不清）
+
+## vue3的优势
+
++ 增强对typescript的支持
++ 使用composition api代替options api, 更倾向于对逻辑进行功能划分，函数中可以直接使用vue生命周期
++ virtual dom 优化，对静态节点进行标记，对比的时候可以排除，动态节点和静态节点比例越悬殊，优势越明显
++ proxy代替defineProperty, proxy是劫持对象，而defineProperty是劫持属性
+  

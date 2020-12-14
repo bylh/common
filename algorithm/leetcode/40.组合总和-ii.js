@@ -54,7 +54,7 @@
  * @return {number[][]}
  */
 var combinationSum2 = function(candidates, target) {
-
+    
 };
 // @lc code=end
 
