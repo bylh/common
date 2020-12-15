@@ -13,6 +13,9 @@ setImmediate(function () {
     console.log('强势插入');
   });
 });
+setTimeout(() => {
+    console.log('我是setTimeout')
+}, 0)
 setImmediate(function () {
   console.log('setImmediate延迟执行2'); 
 });
