@@ -55,5 +55,7 @@ console.log(boundGetName())
 
 const unboundArrowGetName = p.getNameArrow
 // 思考，为什么类中的箭头函数可以保留this呢
+// 解答：箭头函数不具有自己的 this，它的 this 永远是定义时包裹它的代码块的 this
+// 参考：https://github.com/dwqs/blog/issues/67
 console.log('unboundArrowGetName()', unboundArrowGetName())
 
