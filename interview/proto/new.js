@@ -5,11 +5,11 @@ function _new(fn, ...args) {
 
     const res = fn.apply(obj, args);  // 构造函数可能直接返回新值
     const type = typeof res;
-    if((type === "object" || type === "function") && res !== null) {
-      return res;
-    } 
+    if ((type === "object" || type === "function") && res !== null) {
+        return res;
+    }
     return obj;
-  }
+}
 
 
 // // 手动实现一个new 操作符
