@@ -1,7 +1,8 @@
 
 // 手动实现new 操作符最终版 [参考](https://github.com/sisterAn/JavaScript-Algorithms/issues/71)
 function _new(fn, ...args) {
-    const obj = Object.create(fn.prototype);
+    const obj = Object.create(fn.prototype); // 等价于 obj.__prop__ = fn.prototype???
+
     const res = fn.apply(obj, args);  // 构造函数可能直接返回新值
     const type = typeof res;
     if((type === "object" || type === "function") && res !== null) {
