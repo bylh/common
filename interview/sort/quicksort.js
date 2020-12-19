@@ -34,6 +34,7 @@ function partition(arr, left, right) {
     //分区操作
     let pivot = left, //设定基准值（pivot）
         index = pivot + 1;
+    // 头部起交换法
     for (let i = index; i <= right; i++) {
         if (arr[i] < arr[pivot]) {
             swap(arr, i, index);
@@ -43,6 +44,25 @@ function partition(arr, left, right) {
     swap(arr, pivot, index - 1);
     return index - 1;
 };
+// 头尾找交换
+function partitionNormal(arr, left, right) {
+    let pivot = arr[left]
+    let i = left, j = right
+    while (i !== j) {
+        while (arr[j] >= pivot && i < j) {
+            j--
+        }
+        while (arr[i] <= pivot && i < j) {
+            i++
+        }
+        if (i < j) {
+            swap(arr, i, j)
+        }
+    }
+    arr[left] = arr[i]
+    a[i] = pivot
+    return i
+}
 
 function swap(arr, i, j) {
     let temp = arr[i];
