@@ -66,23 +66,27 @@
 // };
 // 完全自己实现
 var removeNthFromEnd = function (head, n) {
-    if (head == null) {
+    if (head == null || n <= 0) {
         return head
     }
-    let p = q = head
-    while (n > 0 && q != null) {
-        q = q.next
-        n--
+    let slow = head
+    let fast = head
+    while (fast.next != null) {
+        if (n > 0) {
+            fast = fast.next
+            n--
+        } else {
+            fast = fast.next
+            slow = slow.next
+        }
     }
-    if (q == null) {
-        return head.next
+    if (n !== 0) {
+        return slow.next
+    } else {
+        slow.next = slow.next.next
+        return head
     }
-    while (q.next != null) {
-        q = q.next
-        p = p.next
-    }
-    p.next = p.next.next
-    return head
+
 };
 // @lc code=end
 
