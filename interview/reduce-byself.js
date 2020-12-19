@@ -1,4 +1,3 @@
-const { arguments } = require("commander")
 
 // 手动实现array reduce方法
 Array.prototype.myReduce = function (fn, ...args) {
