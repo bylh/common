@@ -45,19 +45,39 @@
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function(head, n) {
+// var removeNthFromEnd = function(head, n) {
+//     if (head == null) {
+//         return head
+//     }
+//     let p = q = head
+//     while(n > 0 && q != null) {
+//         q = q.next
+//         n--
+//     }
+//     if (q == null) {
+//         return head.next
+//     }
+//     while(q.next != null) {
+//         q = q.next
+//         p = p.next
+//     }
+//     p.next = p.next.next
+//     return head
+// };
+// 完全自己实现
+var removeNthFromEnd = function (head, n) {
     if (head == null) {
         return head
     }
     let p = q = head
-    while(n > 0 && q != null) {
+    while (n > 0 && q != null) {
         q = q.next
         n--
     }
     if (q == null) {
         return head.next
     }
-    while(q.next != null) {
+    while (q.next != null) {
         q = q.next
         p = p.next
     }
