@@ -7,7 +7,7 @@ function quickSortEs6(arr) {
     const [pivot, ...rest] = arr
 
     return [
-        ...quickSortEs6(rest.filter(x => x < pivot)),
+        ...quickSortEs6(rest.filter(x => x <= pivot)),
         pivot,
         ...quickSortEs6(rest.filter(x => x > pivot))
     ]
