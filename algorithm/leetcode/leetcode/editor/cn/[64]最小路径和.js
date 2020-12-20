@@ -22,6 +22,7 @@
  * @return {number}
  */
 var minPathSum = function(grid) {
+    // TODO 初始化数组有问题
     const dp = new Array(grid.length).fill(new Array(grid[0].length));
     for (let i = 0; i < grid.length; i ++) {
         for(let j = 0; j < grid[0].length; j++) {
