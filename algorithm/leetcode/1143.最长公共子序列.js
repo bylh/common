@@ -62,27 +62,25 @@
  * @param {string} text2
  * @return {number}
  */
-var longestCommonSubsequence = function(text1, text2) {
-    let m = text1.length + 1
-    let n = text2.length + 1
-    let res = new Array(m)
-    for (let i = 0; i < m; i++) {
-        res[i] = new Array(n)
-        res[i][0] = 0
+var longestCommonSubsequence = function (text1, text2) {
+    if (!text1.length || !text2.length) {
+        return 0
     }
-    for (let j = 0; j < n; j ++) {
-        res[0][j] = 0
-    }
-    for (let i = 1; i < m; i ++) {
-        for (let j = 1; j < n; j ++) {
+    let l1 = text1.length + 1
+    let l2 = text2.length + 1
+    dp = new Array(l1).fill().map(() => new Array(l2).fill(0))
+
+    // 这里的dp[i][j]代表的是text1[0 ~ i-1]到text2[0 ~ j-1]的最长公共子串
+    for (let i = 1; i < l1; i++) {
+        for (let j = 1; j < l2; j++) {
             if (text1[i - 1] === text2[j - 1]) {
-                res[i][j] = 1 + res[i - 1][j - 1]
+                dp[i][j] = dp[i - 1][j - 1] + 1
             } else {
-                res[i][j] = Math.max(res[i - 1][j], res[i][j - 1])
+                dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j])
             }
         }
     }
-    return res[m - 1][n - 1]
+    return dp[l1 - 1][l2 - 1]
 };
 // @lc code=end
 
