@@ -26,3 +26,43 @@
 2. webpcak相关
    + vue-loader
      vue-loader需要
+
+## web app
+
+1. web app 原理 [参考](https://segmentfault.com/a/1190000010356403)
+    + react native 和cordova的区别[知乎](https://www.zhihu.com/question/47053259)
+    + ionic cordova原理
+     ios wkwebview(ios8以前是uiwebview)
+    + Native调用js原理 (在android中，native与js的通讯方式与ios类似，ios中的通过schema方式在android中也是支持的。)
+     ios uiweb调用javascript方法原理：stringByEvaluatingJavaScriptFromString可以执行脚本，所以可以在window对象
+     中暴露JSBridge全局对象，通过JSBridge去操作js
+
+     ```javascript
+        webview.setDataToJs = function(data) {
+        webviewstringByEvaluatingJavaScriptFroString("JSBridge.trigger(event, data)")
+        }
+    ```
+
+    + js调用Native原理
+      在UIWebView内发起的所有网络请求，都可以通过delegate函数在Native层得到通知。这样，我们就可以在UIWebView内发起一个自定义的网络请求，通常是这样的格式：(jsbridge://methodName?param1=value1&param2=value2)
+
+2. web app 自适应布局
+   + 使用媒体查询（效率低，写太多的媒体查询对性能有影响）
+
+    ```css
+     @media screen and (min-width: 312px) and (max-width: 413px) {
+         html {font-size: 16px}
+     }
+    ```
+
+## electron
+
+1. electron原理 [知乎](https://zhuanlan.zhihu.com/p/138128748)
+   + 浏览器的多进程架构，为什么舍弃单进程架构转用多进程架构
+   + electron 通信原理
+  
+## webscoket、socket
+
+1. websocket简介
+
+## node相关
