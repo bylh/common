@@ -1,7 +1,7 @@
 url = 'https://www.baidu.com?test=1'
 function parseUrl(url) {
     let params = {}
-    if(!url) {
+    if (!url) {
         return ''
     }
     let paramsStr = url.split('?')[1]
@@ -14,3 +14,8 @@ function parseUrl(url) {
     return params
 }
 console.log(parseUrl(url))
+
+// 正则实现
+function parseUrlByReg(url) {
+    let reg = new Reg
+}
