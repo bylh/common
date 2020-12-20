@@ -75,28 +75,50 @@
 //         vaildHelper(root.right, root.val, max)
 //     )
 // }
-var isValidBST = function(root) {
+// var isValidBST = function(root) {
+//     if (root == null) {
+//         return true
+//     }
+//     let stack = []
+//     // let result = []
+//     let currentVal = Number.MIN_SAFE_INTEGER
+//     // 非递归中序遍历
+//     while(root != null || stack.length > 0) {
+//         while (root != null) {
+//             stack.push(root)
+//             root = root.left
+//         }
+//         let node = stack.pop()
+//         if (node) {
+//             if (currentVal >= node.val) {
+//                 return false
+//             }
+//             currentVal = node.val;
+//             // result.push(node.val)
+//         }
+//         root = node.right
+//     }
+//     return true
+// }
+// 完全用中序遍历的非递归实现，利用的思想是若是二叉搜索树，遍历的结果一定是递增有序的数组
+var isValidBST = function (root) {
     if (root == null) {
         return true
     }
-    let stack = []
-    // let result = []
-    let currentVal = Number.MIN_SAFE_INTEGER
-    // 非递归中序遍历
-    while(root != null || stack.length > 0) {
-        while (root != null) {
-            stack.push(root)
-            root = root.left
+    let res = []  // 保存结果
+    let stack = [] // 栈来实现
+    let cur = root
+    while (cur != null || stack.length > 0) {
+        while (cur != null) {
+            stack.push(cur)
+            cur = cur.left
         }
         let node = stack.pop()
-        if (node) {
-            if (currentVal >= node.val) {
-                return false
-            }
-            currentVal = node.val;
-            // result.push(node.val)
+        res.push(node.val)
+        if (res.length > 1 && res[res.length - 2] >= node.val) {
+            return false
         }
-        root = node.right
+        cur = node.right
     }
     return true
 }
