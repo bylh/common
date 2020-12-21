@@ -64,5 +64,82 @@
 ## webscoket、socket
 
 1. websocket简介
+（1）建立在 TCP 协议之上，服务器端的实现比较容易。
+
+（2）与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+
+（3）数据格式比较轻量，性能开销小，通信高效。
+
+（4）可以发送文本，也可以发送二进制数据。
+
+（5）没有同源限制，客户端可以与任意服务器通信。
+
+（6）协议标识符是ws（如果加密，则为wss），服务器网址就是 URL。
+
+## 浏览器页面间通信
+
+1. BroadcastChannel
+   页面1：
+   const bc = new BroadcastChannel('alienzhou');
+   bc.postMessage('hello')
+   页面2：
+   const bc = new BroadcastChannel('alienzhou');
+   bc.onmessage = function(e) {
+    console.log('receive:', e.data);
+};
+2. serviceWorker
+3. localStorage
+   页面1：
+   window.addEventListener('storage', function (e) {
+    if (e.key === 'ctc-msg') {
+        const data = JSON.parse(e.newValue);
+        const text = '[receive] ' + data.msg + ' —— tab ' + data.from;
+        console.log('[Storage I] receive message:', text);
+    }
+});
+    页面2：
+    mydata.st = +(new Date);
+    window.localStorage.setItem('ctc-msg', JSON.stringify(mydata));
+
+4. indexDB
+5. websocket
 
 ## node相关
+
+## graphql和restful的比较
+
+1. 扩展性，单个RESTful接口返回数据越来越臃肿
+比如获取用户信息/users/:id，最初可能只有id、昵称，但随着需求的变化，用户所包含的字段可能会越来越多，年龄、性别、头像、经验、等级，等等等等
+
+2. 某个前端展现，实际需要调用多个独立的RESTful API才能获取到足够的数据
+
+3. 代码即文档： GraphQL会把schema定义和相关的注释生成可视化的文档，从而使得代码的变更，直接就反映到最新的文档上，避免RESTful中手工维护可能会造成代码、文档不一致的问题。
+
+4. 参数类型强校验
+RESTful方案本身没有对参数的类型做规定，往往都需要自行实现参数的校验机制，以确保安全。
+但GraphQL提供了强类型的schema机制，从而天然确保了参数类型的合法性
+
+## 前端工程化
+
+1. 模块化 (webpack、cdn)
+   资源模块化（文件、图片）、代码模块化（js、css）
+
+2. 组件化（从业务和ui层面的划分）继承、扩展
+
+3. 规范化
+    流程规范化
+    目录结构的制定
+    编码规范 （eslint stylelint）
+    前后端接口规范
+    文档规范
+    组件管理
+    Git分支管理
+    Commit描述规范 (git hook)
+    定期CodeReview
+    视觉图标规范
+
+4. 自动化
+   脚本部署
+   自动化构建
+
+5. 高性能、稳定性
