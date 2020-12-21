@@ -2,6 +2,9 @@ function* IdGenerator() {  // ⇽--- 定义生成器函数IdGenerator
     let id = 0;  // ⇽--- 一个始终记录ID的变量，这个变量无法在生成器外部改变  
     while (true) {
         yield ++id;
+        if (id > 3) { // 可以设置终止条件
+            return id++
+        }
     }
 } // ⇽--- 循环生成无限长度的ID序列
 
