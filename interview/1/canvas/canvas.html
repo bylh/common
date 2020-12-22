@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="mycanvas" width="500px" height="500px"></canvas>
+
+    <script>
+        const c = document.getElementById('mycanvas')
+        const ctx = c.getContext('2d')
+        ctx.moveTo(10, 10)
+        ctx.lineTo(200, 100)
+        ctx.stroke()
+    </script>
+</body>
+</html>

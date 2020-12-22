@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 添加leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!-- 添加leaflet js 注意：必须紧跟在leaf css之后 -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <style>
+        #mapid {
+            height: 90vh;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mapid"></div>
+    <script>
+        const center = {
+            lat: 39.91,
+            lng: 116.39
+        }
+        const zoom = 13
+        // 设置北京坐标
+        const mymap = L.map('mapid').setView(center, zoom);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnlsaCIsImEiOiJja2owMzBzb3kyb2I5MnNuNDZyOHFvdzFmIn0.6NTPZcvBmoIkN1YqRy099Q', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'your.mapbox.access.token'
+        }).addTo(mymap);
+        const marker = L.marker([center.lat, center.lng]).addTo(mymap)
+        const circle = L.circle([center.lat, center.lng], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500 // 半径
+        }).addTo(mymap)
+        var polygon = L.polygon([
+            [center.lat, center.lng],
+            [center.lat - 0.005, center.lng - 0.01],
+            [center.lat - 0.005, center.lng + 0.01],
+            // [center.lat + 0.1, center.lng + 0.2]
+        ], {
+            color: 'blue'
+        }).addTo(mymap);
+        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+        circle.bindPopup("I am a circle.");
+        polygon.bindPopup("I am a polygon.");
+
+        // map地图点击事件处理
+        mymap.on('click', (e) => {
+            console.log('点击地图事件', e.latlng)
+        })
+    </script>
+</body>
+
+</html>
