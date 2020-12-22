@@ -57,8 +57,13 @@
         circle.bindPopup("I am a circle.");
         polygon.bindPopup("I am a polygon.");
 
+        const popup = L.popup()
         // map地图点击事件处理
         mymap.on('click', (e) => {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(mymap);
             console.log('点击地图事件', e.latlng)
         })
     </script>
