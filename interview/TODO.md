@@ -336,3 +336,11 @@ utilbox_serv基础工具服务、kb_serv知识库资源服务、se_serv搜索引
 审核系统： 富文本对比，试卷、试题编辑、试卷下载转word方案
 
 sso单点登录： [sso](https://www.jianshu.com/p/75edcc05acfd)
+
+ES2020 ?链式操作符
+
+用 ?? 表示。如果表达式在??的左侧运算符求值为 undefined 或 null
+
+Promise.allSettled： 我们知道 Promise.all 具有并发执行异步任务的能力。但它的最大问题就是如果参数中的任何一个promise为reject的话，则整个Promise.all 调用会立即终止，并返回一个reject的新的 Promise 对象。
+
+import()支持在js中动态引入
