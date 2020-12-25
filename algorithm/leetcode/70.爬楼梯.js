@@ -57,15 +57,18 @@
 //     return climbStairs(n - 1) + climbStairs(n - 2)
 // };
 // TODO 有问题
-// var climbStairs = function(n) {
-//     const fib = (n, map = new Map([[1, 1], [2, 2]])) => {
-//         if (map.has(n)) {
-//             return map.get(n)
-//         }
-//         return map.set(n, fib(n - 1) + fib(n - 2)).get(n)
-//     }
-//     return fib(n)
-// };
+
+var climbStairs = function(n) {
+    const fib = (n, map = new Map([[1, 1], [2, 2]])) => {
+        if (map.has(n)) {
+            return map.get(n)
+        }
+        let sum = fib(n - 1, map) + fib(n - 2, map)
+        map.set(n, sum)
+        return sum
+    }
+    return fib(n)
+};
 
 
 // var climbStairs = function(n) {
