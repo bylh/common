@@ -67,19 +67,19 @@
  */
 // 完全自实现 滑动窗口思想
 var lengthOfLongestSubstring = function (s) {
-    let count = 0
     let res = []
-    for (let i = 0; i < s.length; i++) {
+    let max = 0
+    for(let i = 0; i < s.length; i++) {
         let index = res.indexOf(s[i])
-        if (index === -1) {
+        if (index !== -1) {
+            res = res.slice(index + 1);
             res.push(s[i])
         } else {
-            res = res.slice(index + 1)
             res.push(s[i])
         }
-        count = Math.max(res.length, count)
+        max = Math.max(max, res.length)
     }
-    return count
+    return max
 };
 // @lc code=end
 
