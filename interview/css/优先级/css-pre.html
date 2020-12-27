@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test[data-v-1] {
+            background-color: antiquewhite;
+        }
+        [bylh="1"] {
+            /* 思考：为什么此处的clolor不能覆盖fist-line伪元素的，因为下面的filst-line相当于
+            div内部的一个元素，所以此处不是优先级的问题，是层级的问题，内层的属性覆盖外层
+             */
+            color: red;
+            background-color: yellow;
+        }
+        div::first-line {
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="test" data-v-1 bylh="1">
+        11
+    </div>
+    <div>22222222222222222222222222222222222222222222222222222222222222222222
+        2222222222222222222222222222222222222222222222222222222222222222222222222222222222</div>
+    <div>33</div>
+    <div>44</div>
+</body>
+</html>
