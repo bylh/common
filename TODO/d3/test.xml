@@ -1,0 +1,14 @@
+<osmChange version="0.3" generator="iD">
+    <create>
+        <node id="-2" lon="118.77074160521832" lat="25.430053183621514" version="0" changeset="234567">
+            <tag k="Kind" v="220100" />
+            <tag k="Parent_POI" v="0" />
+            <tag k="layer" v="POI" />
+            <tag k="Nav_X" v="118.77074160521832" />
+            <tag k="Nav_Y" v="25.430053183621514" />
+            <tag k="Name" v="test1" />
+        </node>
+    </create>
+    <modify />
+    <delete if-unused="true" />
+</osmChange>

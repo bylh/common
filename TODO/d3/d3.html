@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        /* .rect {
+            transform-origin: 70 70;
+            transform: rotate(45deg);
+        } */
+        .f-div {
+            height: 200px;
+            width: 200px;
+            background-color: yellow;
+        }
+
+        .c-div {
+            transform-origin: 0 13px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <svg width="500px" height="500px" viewBox="0 0 100 100">
+            <g stroke="green" fill="yellow">
+                <circle cx="50" cy="50" r="5" />
+                <rect class="rect" x="60" y="60" width="20" height="20" fill="none"></rect>
+            </g>
+        </svg>
+        <div class="f-div">
+            <div class="c-div">⬆️</div>
+        </div>
+        <svg viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
+            <!-- No dashes nor gaps -->
+            <!-- <line x1="0" y1="1" x2="30" y2="1" stroke="black" /> -->
+          
+            <!-- Dashes and gaps of the same size -->
+            <line x1="0" y1="3" x2="30" y2="3" stroke="black"
+                    stroke-dasharray="30" />
+          
+            <!-- Dashes and gaps of different sizes -->
+            <!-- <line x1="0" y1="5" x2="30" y2="5" stroke="black"
+                    stroke-dasharray="4 1" />
+          
+            <!-- Dashes and gaps of various sizes with an odd number of values -->
+            <line x1="0" y1="7" x2="30" y2="7" stroke="black"
+                    stroke-dasharray="4 1 2" />
+          
+            <!-- Dashes and gaps of various sizes with an even number of values -->
+            <line x1="0" y1="9" x2="30" y2="9" stroke="black"
+                    stroke-dasharray="4 1 2 3" /> -->
+          </svg>
+    </div>
+    <script>
+        // let data = [1, 2, 3]
+        // let group = d3.select('#app').selectAll('p').data(data).append('div')
+        // d3.select('#app').selectAll('p').data(data).append('div')
+        // d3.select('#app').selectAll('p').data(data).append('div')
+        // console.log(group)
+        // console.log(group.data())
+        // d3.select('.rect').style('t')
+        // var dispatch = d3.dispatch("a", "b");
+        // dispatch.on("a.o", function (data) {
+        //     console.log(data);
+        // });
+        // dispatch.on("a", function (data) {
+        //     console.log(data);
+        // });
+        // dispatch.on("b.o", function (data) {
+        //     console.log(data);
+        // });
+        // dispatch.on("b", function (data) {
+        //     console.log('b', data)
+        // })
+
+        // dispatch.call("a", this, 'A data');
+        // dispatch.call("b", this, 'B data');
+
+        let old = d3.dispatch;
+
+        function wrapDispatch(dispatch, eventNames) {
+            eventNames.forEach(function (eventName) {
+                dispatch[eventName] = function (...args) {
+                    dispatch.call(eventName, this, ...args);
+                };
+            });
+            return dispatch;
+        }
+
+        d3.dispatch2 = function (...args) {
+            let dispatch = old.call(this, ...args);
+            return wrapDispatch(dispatch, args);
+        };
+
+        // Copies a variable number of methods from source to target.
+        d3.rebind = function (target, source) {
+            var i = 1, n = arguments.length, method;
+            while (++i < n) target[method = arguments[i]] = d3_rebind(target, source, source[method]);
+            return target;
+        };
+
+        // Method is assumed to be a standard D3 getter-setter:
+        // If passed with no arguments, gets the value.
+        // If passed with arguments, sets the value and returns the target.
+        function d3_rebind(target, source, method) {
+            return function () {
+                var value = method.apply(source, arguments);
+                return value === source ? target : value;
+            };
+        }
+
+
+        function LaneCanvas() {
+            const dispatch = d3.dispatch2('select_lane', 'history_change', 'close', 'delete', 'change_left_line', 'change_right_line', 'draw', 'click_blank', 'click_operation')
+            function test() {
+                console.log('test')
+            }
+            test.redraw = function () {
+                dispatch.draw([1, 2, 3])
+            }
+            return d3.rebind(test, dispatch, 'on')
+        }
+        let instance = new LaneCanvas()
+        instance.on('draw', ids => {
+            console.log('ids', ids)
+        })
+        instance.redraw()
+    </script>
+</body>
+
+</html>

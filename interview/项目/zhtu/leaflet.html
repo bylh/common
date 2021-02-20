@@ -29,9 +29,12 @@
         }
         const zoom = 13
         // 设置北京坐标
-        const mymap = L.map('mapid').setView(center, zoom);
+        const mymap = L.map('mapid', {
+            editable: true,
+        }).setView(center, zoom);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnlsaCIsImEiOiJja2owMzBzb3kyb2I5MnNuNDZyOHFvdzFmIn0.6NTPZcvBmoIkN1YqRy099Q', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+
             maxZoom: 18,
             id: 'mapbox/streets-v11',
             tileSize: 512,
@@ -53,6 +56,7 @@
         ], {
             color: 'blue'
         }).addTo(mymap);
+        polygon.enableEdit()
         marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
         circle.bindPopup("I am a circle.");
         polygon.bindPopup("I am a polygon.");
@@ -66,6 +70,8 @@
                 .openOn(mymap);
             console.log('点击地图事件', e.latlng)
         })
+        // var polyline = L.polyline([[116.39, 39.91], [39.92, 116.40]]).addTo(mymap);
+        // polyline.enableEdit();
     </script>
 </body>
 
