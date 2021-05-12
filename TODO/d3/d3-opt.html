@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- <div>
+        <div class="current-img-wrap history-mark" style="display: block;"><img class="current-image" draggable="false"
+                src="http://ishare-10003415.cossh.myqcloud.com/deviceearn/tempfordebug/5bea32ae04f233aace4c6102/2102281129539632288/1614482755523.jpg?sign=vwEc1i4LECs5yCCEpEV0FGGZEvdhPTEwMDAzNDE1Jms9QUtJRFJoTU5YYW1GNTN3NmxJR1hQSlJLN2VPU21MdHNqMGZHJmU9MTYxOTQ5ODIyMyZ0PTE2MTk0NTUwMjMmcj0yMDQ3NDAzMDImZj0mYj1pc2hhcmU="
+                style="position: absolute; height:230.625px;width:410px;top:20.6875px;left:0px;">
+        </div>
+    </div> -->
+    <script>
+        // console.log('d3', d3)
+        let container = d3.selectAll('body')
+        // let draw = (container, data) => {
+        //     let update = container.selectAll('.item').data(data)
+        //     let enter = update.enter()
+        //     enter.append('div').attr('class', 'item').text(d => d)
+        //     enter.merge(update)
+        //     let exit = update.exit()
+        //     exit.remove()
+        // }
+        // let data1 = [1, 2, 3]
+        // draw(container, data1)
+        // let data2 = [1, 2]
+        // draw(container, data2)
+
+
+        const renderImg = (selection, data) => {
+            let currentImage = selection.selectAll('img').data(data)
+            currentImage = currentImage.enter()
+                .append('img')
+                .attr('class', 'current-image')
+                .merge(currentImage)
+            currentImage
+                .attr('src', d => {
+                    return d
+                })
+                .style('width', '100%')
+                .merge(currentImage)
+
+            currentImage.exit().remove()
+        }
+        let imgArr1 = ['http://ishare-10003415.cossh.myqcloud.com/deviceearn/tempfordebug/5bea32ae04f233aace4c6102/2102281129539632288/1614482755523.jpg?sign=vwEc1i4LECs5yCCEpEV0FGGZEvdhPTEwMDAzNDE1Jms9QUtJRFJoTU5YYW1GNTN3NmxJR1hQSlJLN2VPU21MdHNqMGZHJmU9MTYxOTQ5ODIyMyZ0PTE2MTk0NTUwMjMmcj0yMDQ3NDAzMDImZj0mYj1pc2hhcmU=', 'http://ishare-10003415.cossh.myqcloud.com/deviceearn/tempfordebug/5bea32ae04f233aace4c6102/2102281129539632288/1614482755523.jpg?sign=vwEc1i4LECs5yCCEpEV0FGGZEvdhPTEwMDAzNDE1Jms9QUtJRFJoTU5YYW1GNTN3NmxJR1hQSlJLN2VPU21MdHNqMGZHJmU9MTYxOTQ5ODIyMyZ0PTE2MTk0NTUwMjMmcj0yMDQ3NDAzMDImZj0mYj1pc2hhcmU=']
+        renderImg(container, imgArr1)
+        let imgArr2 = ['http://ishare-10003415.cossh.myqcloud.com/deviceearn/tempfordebug/5bea32ae04f233aace4c6102/2102281129539632288/1614482755523.jpg?sign=vwEc1i4LECs5yCCEpEV0FGGZEvdhPTEwMDAzNDE1Jms9QUtJRFJoTU5YYW1GNTN3NmxJR1hQSlJLN2VPU21MdHNqMGZHJmU9MTYxOTQ5ODIyMyZ0PTE2MTk0NTUwMjMmcj0yMDQ3NDAzMDImZj0mYj1pc2hhcmU=']
+        renderImg(container, imgArr2)
+    </script>
+</body>
+
+</html>

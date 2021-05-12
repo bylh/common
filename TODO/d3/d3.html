@@ -7,6 +7,22 @@
     <title>Document</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <style>
+        .mask-boundary {
+            stroke: #44ff00;
+            fill: yellow;
+            pointer-events: none;
+            stroke-width: 1px;
+            cursor: no-drop;
+            stroke-dasharray: 10 10;
+        }
+        .mask-boundary-inner {
+            stroke: rebeccapurple;
+            pointer-events: none;
+            stroke-width: 1px;
+            cursor: no-drop;
+            stroke-dasharray: 10 10;
+        }
+
         /* .rect {
             transform-origin: 70 70;
             transform: rotate(45deg);
@@ -23,8 +39,23 @@
         }
     </style>
 </head>
+<!-- fill-rule="nonzero" -->
 
 <body>
+    <svg class="mask_con" width="1492" height="575">
+        <g class="group_mask">
+            <path
+                fill-rule="evenodd"
+                class="mask-boundary"
+                d="M-201,775L-201,-200L1691,-200L1691,775L-201,775M487,612L477,585L395,335L388,230L391,159L445,-14L469,-31L1241,208L1357,252L1292,411L487,612">
+            </path>
+            <path
+                class="mask-boundary-inner"
+                fill-rule="evenodd"
+                d="M-201,775L-201,-201L1691,-201L1691,775L-201,775M447,437L443,426L410,325L407,282L408,253L430,183L440,176L754,273L801,291L774,356L447,437">
+            </path>
+        </g>
+    </svg>
     <div id="app">
         <p>1</p>
         <p>2</p>
@@ -41,23 +72,24 @@
         <svg viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
             <!-- No dashes nor gaps -->
             <!-- <line x1="0" y1="1" x2="30" y2="1" stroke="black" /> -->
-          
+
             <!-- Dashes and gaps of the same size -->
-            <line x1="0" y1="3" x2="30" y2="3" stroke="black"
-                    stroke-dasharray="30" />
-          
+            <line x1="0" y1="3" x2="30" y2="3" stroke="black" stroke-dasharray="30" />
+
             <!-- Dashes and gaps of different sizes -->
             <!-- <line x1="0" y1="5" x2="30" y2="5" stroke="black"
                     stroke-dasharray="4 1" />
           
             <!-- Dashes and gaps of various sizes with an odd number of values -->
-            <line x1="0" y1="7" x2="30" y2="7" stroke="black"
-                    stroke-dasharray="4 1 2" />
-          
+            <line x1="0" y1="7" x2="30" y2="7" stroke="black" stroke-dasharray="4 1 2" />
+
             <!-- Dashes and gaps of various sizes with an even number of values -->
-            <line x1="0" y1="9" x2="30" y2="9" stroke="black"
-                    stroke-dasharray="4 1 2 3" /> -->
-          </svg>
+            <line x1="0" y1="9" x2="30" y2="9" stroke="black" stroke-dasharray="4 1 2 3" /> -->
+        </svg>
+    </div>
+    <div class="chart">
+        <div></div>
+        <div></div>
     </div>
     <script>
         // let data = [1, 2, 3]
@@ -133,6 +165,16 @@
             console.log('ids', ids)
         })
         instance.redraw()
+
+
+        var data = [4, 8, 15, 16, 23, 42, 12];
+
+        d3.select(".chart")
+            .selectAll("div")
+            .data(data)
+            .enter().append("div")
+            .style("width", function (d) { return d * 10 + "px"; })
+            .text(function (d) { return d; });
     </script>
 </body>
 
