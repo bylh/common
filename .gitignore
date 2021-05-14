@@ -42,3 +42,4 @@ Thumbs.db
 /extra
 config.local.js
 /tencent
+node_modules
