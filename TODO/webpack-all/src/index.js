@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import './rbush-test'
 function component() {
     const element = document.createElement('div');
 
