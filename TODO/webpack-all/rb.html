@@ -1,17 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .box1 {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            position: absolute;
+            transform: rotate(45deg);
+        }
+
+        .box2 {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            background-color: greenyellow;
+            transform: rotate(30deg);
+            left: 35px;
+        }
+    </style>
 </head>
+
 <body>
+    <div class="container">
+        <div id="box1" class="box1"></div>
+        <div id="box2" class="box2"></div>
+    </div>
     <script type="module">
         // 注意，需要找打包后的文件，不然假如内部使用了import,会有路径会有问题
         import * as rbush from './node_modules/rbush/rbush.min.js'
         console.log('test rbush', rbush)
-        
+        let box1 = document.getElementById('box1')
+        let box2 = document.getElementById('box2')
+        let rect1 = box1.getBoundingClientRect()
+        let rect2 = box2.getBoundingClientRect()
+        console.log('rect1', rect1)
+        console.log('rect2', rect2)
+        console.log('是否碰撞', collision(box1, box2), is_overlap(box1, box2))
+        function is_overlap(node1, node2) {
+            let rect1 = node1.getBoundingClientRect();
+            let rect2 = node2.getBoundingClientRect();
+            let overlap = !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
+            return overlap;
+        }
+
+        // 碰撞检测
+        function collision(obj1, obj2) {
+            let obj1Rect = obj1.getBoundingClientRect();
+            let obj2Rect = obj2.getBoundingClientRect();
+            console.log(obj1Rect);
+
+            let mL = obj1Rect.left;
+            let mR = obj1Rect.right;
+            let mB = obj1Rect.bottom;
+            let mT = obj1Rect.top;
+
+            let lL = obj2Rect.left;
+            let lR = obj2Rect.right;
+            let lB = obj2Rect.bottom;
+            let lT = obj2Rect.top;
+
+            if (mL > lR || lL > mR || mT > lB || lT > mB) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     </script>
 </body>
+
 </html>
